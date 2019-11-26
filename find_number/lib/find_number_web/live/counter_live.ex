@@ -2,7 +2,6 @@ defmodule FindNumberWeb.CounterLive do
   use Phoenix.LiveView
   require IEx
 
-
   def mount(_, socket) do
     # :count_value is an atom, as a symbol in ruby
     {:ok, socket
@@ -27,6 +26,12 @@ defmodule FindNumberWeb.CounterLive do
     }
   end
 
+  def handle_event("reset", _, socket) do
+    {:noreply, socket
+      |> assign(:count_value, 0)
+      |> assign(:count_try, 0)
+    }
+  end
 
   def render(assigns) do
     # @ is an assign we can isplay it in the view
@@ -49,6 +54,8 @@ defmodule FindNumberWeb.CounterLive do
     <button phx-click="increment">increment</button>
     <button phx-click="decrement">decrement</button>
     <h3><%=@max_tries - @count_try %> essais restants</h3>
+
+    <button phx-click="reset">réinitialiser</button>
 
     """
   end
