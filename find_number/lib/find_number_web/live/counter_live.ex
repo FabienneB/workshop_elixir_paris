@@ -9,6 +9,7 @@ defmodule FindNumberWeb.CounterLive do
              |> assign(:count_value, 0)
              |> assign(:count_try, 0)
              |> assign(:max_tries, 10)
+             |> assign(:random_number, :rand.uniform(10))
     }
  end
 
@@ -26,17 +27,24 @@ defmodule FindNumberWeb.CounterLive do
     }
   end
 
+
   def render(assigns) do
     # @ is an assign we can isplay it in the view
     ~L"""
-    <%= if @count_try > 10 do %>
+    <%= if @count_try < 10 do %>
+      <%= if @count_value == @random_number do %>
+        <h2>Tu as gagné</h2>
+      <%= else %>
+       <h2>Essai encore, tu as <%=@max_tries - @count_try %> essais restants</h2>
+     <% end %>
+      <%= else %>
       <h2>Tu as perdu</h2>
     <% end %>
-    <%= if @count_value > 0 do %>
-      <h2>C'est un nombre positif</h2>
-    <%= else %>
-      <h2>C'est un nombre négatif</h2>
-    <% end %>
+    
+    <div>
+      Your guess:
+    </div>
+
     <h1><%=@count_value %></h1>
     <button phx-click="increment">increment</button>
     <button phx-click="decrement">decrement</button>
