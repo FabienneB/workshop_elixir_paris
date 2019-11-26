@@ -36,6 +36,7 @@ defmodule FindNumberWeb.CounterLive do
     }
   end
 
+  # we can also use form with phx-submit
   def render(assigns) do
     # @ is an assign we can isplay it in the view
     ~L"""
