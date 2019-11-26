@@ -30,6 +30,7 @@ defmodule FindNumberWeb.CounterLive do
     {:noreply, socket
       |> assign(:count_value, 0)
       |> assign(:count_try, 0)
+      |> assign(:random_number, :rand.uniform(10))
     }
   end
 
@@ -51,11 +52,11 @@ defmodule FindNumberWeb.CounterLive do
     </div>
 
     <h1><%=@count_value %></h1>
-    <button phx-click="increment">increment</button>
-    <button phx-click="decrement">decrement</button>
+    <button phx-click="decrement">Decrémente</button>
+    <button phx-click="increment">Incrémente</button>
     <h3><%=@max_tries - @count_try %> essais restants</h3>
 
-    <button phx-click="reset">réinitialiser</button>
+    <button phx-click="reset">Réinitialiser</button>
 
     """
   end
