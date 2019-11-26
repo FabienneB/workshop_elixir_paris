@@ -2,6 +2,8 @@ defmodule FindNumberWeb.CounterLive do
   use Phoenix.LiveView
   require IEx
 
+  # declaration du state
+  # avec le svariables
   def mount(_, socket) do
     # :count_value is an atom, as a symbol in ruby
     {:ok, socket
